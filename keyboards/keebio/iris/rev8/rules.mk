@@ -1,2 +1,3 @@
 SERIAL_DRIVER = vendor
+COMBO_ENABLE = yes
 # ENCODER_ENABLE = yes
