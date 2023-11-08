@@ -5,13 +5,15 @@
 
 #define _COLEMAK_DH 0
 #define _QWERTY 1
-#define _LOWER 2
-#define _RAISE 3
-#define _ADJUST 4
+#define _NUMPAD 2
+#define _LOWER 3
+#define _RAISE 4
+#define _ADJUST 5
 
 enum custom_keycodes {
   COLEMAK_DH = SAFE_RANGE,
   QWERTY,
+  NUMPAD,
   LOWER,
   RAISE,
   ADJUST,
@@ -27,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LCTL, KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                               KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_BSLS,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_HOME,          KC_SPC,  KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+     (SC_LSPO), KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_HOME,          KC_SPC,  KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, SC_RSPC,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     KC_LGUI, KC_LALT, KC_ENT,                    KC_SPC,  KC_RALT, RAISE
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -41,9 +43,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_HOME,          KC_SPC,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+     SC_LSPO, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_HOME,          KC_SPC,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SC_RSPC,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     KC_LGUI, KC_LALT, KC_ENT,                    KC_SPC,  KC_RALT, RAISE
+                                // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
+  ),
+
+  [_NUMPAD] = LAYOUT(
+  //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
+     KC_GRAVE,_______, _______, _______, _______, _______,                            _______, KC_NUM,  KC_PSLS, KC_PAST, KC_PMNS, _______,
+  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+     _______, _______, _______, _______, _______, _______,                            _______, KC_P7,   KC_P8,   KC_P9,   KC_PPLS, _______,
+  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+     _______, _______, _______, KC_MINS, KC_EQL,  KC_LBRC,                            KC_PDOT, KC_P4,   KC_P5,   KC_P6,   KC_PPLS, _______,
+  //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+     _______, _______, _______, _______, _______, KC_RBRC, _______,          _______, KC_P0,   KC_P1,   KC_P2,   KC_P3,   KC_PENT, _______,
+  //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
+                                    _______, _______, _______,                    _______,  _______, _______
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
@@ -90,12 +106,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-const uint16_t PROGMEM colemak_combo[] = {KC_LALT, KC_RALT, KC_Q, COMBO_END};
-const uint16_t PROGMEM qwerty_combo[] = {KC_LALT, KC_RALT, KC_W, COMBO_END};
+const uint16_t PROGMEM colemak_combo[] = {KC_LALT, KC_RALT, KC_1, COMBO_END};
+const uint16_t PROGMEM qwerty_combo[] = {KC_LALT, KC_RALT, KC_2, COMBO_END};
 combo_t key_combos[] = {
-   COMBO(colemak_combo, DF(COLEMAK_DH)),
-   COMBO(qwerty_combo, DF(QWERTY)),
+  COMBO(colemak_combo, DF(COLEMAK_DH)),
+  COMBO(qwerty_combo, DF(QWERTY)),
 };
+
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
@@ -108,6 +125,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case QWERTY:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_QWERTY);
+      }
+      return false;
+      break;
+    case KC_LALT:
+      if (record->event.pressed) {
+        layer_on(_NUMPAD);
+      } else {
+         layer_off(_NUMPAD);
       }
       return false;
       break;
