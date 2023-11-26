@@ -22,6 +22,3 @@
 #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
 #define RGB_MATRIX_KEYPRESSES
 
-// Encoders
-// #define ENCODERS_PAD_A { encoder1a }
-// #define ENCODER_RESOLUTION 4
